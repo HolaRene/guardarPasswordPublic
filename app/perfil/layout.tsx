@@ -1,20 +1,15 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import './globals.css'
-import { Toaster } from '@/components/ui/toaster'
+import { Bitter } from 'next/font/google'
 
-const geistPoppins = Poppins({
+const geistPoppins = Bitter({
   subsets: ['latin'],
   weight: ['200', '300', '500', '800'],
 })
 
 export const metadata: Metadata = {
-  title: 'DonJoe, Guarda tus contraseña',
+  title: 'DonJoe,Perfil',
   description: 'Crear, guardar tus contraseña',
   keywords: ['password', 'safe', 'manager', 'donjoe'],
-  icons: {
-    icon: '/joe.png',
-  },
 }
 
 export default function RootLayout({
@@ -24,9 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistPoppins.className} antialiased`}>
+      <body className={`${geistPoppins.className}`}>
+        <h1>Perfil</h1>
         {children}
-        <Toaster />
       </body>
     </html>
   )

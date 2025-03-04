@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  //cambiar la base de datos a MongoDB
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+// Estructura de la base de datos
+model User{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  username String? @unique
+  email String @unique
+  image String?
+  coverImage String?
+  profileImage String?
+  hashedPassword String
+  createAt DateTime @default(now()) @map("_createdAt") @db.Date
+  updatedAt DateTime @default(now()) @map("_updatedAt") @db.Date
+  elements Element[]
+}
+
+
+
+model Element{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  typeElement String
+  isFavorite Boolean
+  urlWebsite String?
+  username String?
+  password String?
+  notas String?
+  userId String @db.ObjectId
+  directory String?
+
+  user User? @relation(fields: [userId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
