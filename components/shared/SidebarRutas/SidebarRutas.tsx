@@ -13,6 +13,7 @@ import {
   datosdeBarraLateralConfiguracion,
   datosdeElementosBarraLateral,
 } from './SidebarRoutes.data'
+import { signOut } from 'next-auth/react'
 
 export default function SidebarRutas() {
   return (
@@ -94,10 +95,10 @@ export default function SidebarRutas() {
           </Accordion>
         )
       )}
-      <SingleItem href='/analicis' label='Analisis' icon={BarChart} />
+      <SingleItem href='/analisis' label='Analisis' icon={BarChart} />
       <SingleItem
         href='#'
-        onClick={() => console.log('Cerrar Secion')}
+        onClick={() => signOut()}
         label='Cerrar Sesion'
         icon={DoorClosed}
       />

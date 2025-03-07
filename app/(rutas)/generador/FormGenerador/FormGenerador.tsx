@@ -4,9 +4,12 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { copiarClipBoard } from '@/lib/copiarClipBoard'
 import { Copy, Shuffle } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PasswordGenerator from './PasswordGenerator/PasswordGenerator'
 import UserGenerator from './UserGenerador/UserGenerator'
+import { crearCustomPassword } from '@/lib/crearCustomPassword'
+import { crearRamdonUser } from '@/lib/crearRamdonUser'
+import { crearRamdonEmail } from '@/lib/crearRamdonEmail'
 
 export default function FormGenerador() {
   const [selectValor, setSelectValor] = useState<'password' | 'user' | string>(
@@ -19,20 +22,72 @@ export default function FormGenerador() {
   const [isMinusSelected, setIsMinusSelected] = useState(true)
   const [isNumberSelected, setIsNumberSelected] = useState(true)
   const [isSpecialCharacter, setIsSpecialCharacter] = useState(true)
+  useEffect(() => {
+    if (selectValor === 'password') {
+      const newPassword = crearCustomPassword(
+        lengthPassword,
+        isMayusSelected,
+        isMinusSelected,
+        isNumberSelected,
+        isSpecialCharacter
+      )
+      setItemValorInput(newPassword)
+    }
+  }, [
+    lengthPassword,
+    isMayusSelected,
+    isMinusSelected,
+    isNumberSelected,
+    isSpecialCharacter,
+    selectValor,
+  ])
+  const handleShuffleClick = () => {
+    if (selectValor === 'password') {
+      const newPassword = crearCustomPassword(
+        lengthPassword,
+        isMayusSelected,
+        isMinusSelected,
+        isNumberSelected,
+        isSpecialCharacter
+      )
+      setItemValorInput(newPassword)
+    } else if (selectValor === 'user') {
+      if (userTypeSelected === 'email') {
+        const email = crearRamdonEmail()
+        setItemValorInput(email)
+      } else {
+        const newUser = crearRamdonUser(10)
+        setItemValorInput(newUser)
+      }
+    }
+  }
+  useEffect(() => {
+    if (selectValor === 'user') {
+      const newUser = crearRamdonUser()
+      setItemValorInput(newUser)
+    }
+    if (userTypeSelected === 'email') {
+      const email = crearRamdonEmail()
+      setItemValorInput(email)
+    }
+  }, [selectValor, userTypeSelected])
 
   return (
     <div className='mt-5 max-w-2xl'>
       <div className='relative w-full'>
         <Input
-          placeholder='pon tu contraseña'
+          placeholder='crea tu contraseña'
           value={itemValorInput}
           onChange={() => console.log('ola')}
         />
         <Copy
-          className='absolute top-3 right-12 w-5 h-5 cursor-pointer'
+          className='absolute top-2  right-12 w-5 h-5 cursor-pointer'
           onClick={() => copiarClipBoard(itemValorInput)}
         />
-        <Shuffle className='absolute top-3 right-5 cursor-pointer w-5 h-5' />
+        <Shuffle
+          className='absolute top-2 right-5 cursor-pointer w-5 h-5'
+          onClick={handleShuffleClick}
+        />
       </div>
       <div className='bg-slate-300 rounded-md shadow-md my-4 p-4'>
         <p className='mb-4 text-slate-500'>
