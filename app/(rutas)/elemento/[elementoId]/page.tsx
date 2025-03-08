@@ -2,11 +2,14 @@ import FormEditElement from '@/components/shared/FormEditElemento/FormEditElemen
 import { db } from '@/lib/db'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
+import { FC } from 'react'
 
-export default async function ElementoEditar({
-  params,
-}: Readonly<{ params: { elementoId: string } }>) {
-  const { elementoId } = params // ❌ No usar await aquí
+interface ElementoEditarProps {
+  params: Promise<{ elementoId: string }>
+}
+export const ElementoEditar: FC<ElementoEditarProps> = async ({ params }) => {
+  const path = await params
+  const id = path.elementoId
 
   const sesion = await getServerSession()
   if (!sesion || !sesion.user?.email) {
@@ -15,7 +18,7 @@ export default async function ElementoEditar({
 
   // Obtener el elemento a editar de la base de datos
   const elemento = await db.element.findUnique({
-    where: { id: elementoId },
+    where: { id: id },
   })
 
   // Si el elemento no existe, redireccionar al inicio
