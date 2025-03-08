@@ -7,7 +7,7 @@ import { FC } from 'react'
 interface ElementoEditarProps {
   params: Promise<{ elementoId: string }>
 }
-export const ElementoEditar: FC<ElementoEditarProps> = async ({ params }) => {
+const ElementoEditar: FC<ElementoEditarProps> = async ({ params }) => {
   const path = await params
   const id = path.elementoId
 
@@ -35,3 +35,4 @@ export const ElementoEditar: FC<ElementoEditarProps> = async ({ params }) => {
     </div>
   )
 }
+export default ElementoEditar
