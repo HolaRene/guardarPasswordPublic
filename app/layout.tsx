@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistPoppins.className} antialiased`}>
+      <body className={`${geistPoppins.className}`}>
         {children}
         <Toaster />
       </body>

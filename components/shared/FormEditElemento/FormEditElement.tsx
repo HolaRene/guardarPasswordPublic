@@ -277,7 +277,7 @@ export default function FormEditElement({ dataElement }: FormEditElementProps) {
           )}
         />
         <div></div>
-        <Button type='submit'>Guardar</Button>
+        <Button type='submit'>Guardar Cambios</Button>
       </form>
     </Form>
   )

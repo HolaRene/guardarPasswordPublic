@@ -87,11 +87,11 @@ function FormAddElemento(props: FormAddElementProps) {
   }
 
   return (
-    <div>
+    <div className='max-h-screen overflow-y-auto p-4'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='md:grid-cols-2 grid gap-y-2 gap-x-4   '
+          className='grid grid-cols-1 md:grid-cols-2 gap-4 p-2'
         >
           <FormField
             control={form.control}
@@ -299,7 +299,7 @@ function FormAddElemento(props: FormAddElementProps) {
             )}
           />
           <div></div>
-          <Button type='submit'>Guardar</Button>
+          <Button type='submit'>Crear</Button>
         </form>
       </Form>
     </div>
