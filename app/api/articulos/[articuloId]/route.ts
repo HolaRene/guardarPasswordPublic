@@ -1,15 +1,17 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { articuloId: string } }
-) {
+interface PatchPropsParams {
+  params: Promise<{ articuloId: string }>
+}
+
+export async function PATCH(req: Request, { params }: PatchPropsParams) {
   try {
-    const { articuloId } = params
+    const itemsProps = await params
+    const id = itemsProps.articuloId
 
     // Verifica si el articuloId está presente
-    if (!articuloId) {
+    if (!id) {
       return new NextResponse('Debe proporcionar un id de artículo', {
         status: 400,
       })
@@ -20,7 +22,7 @@ export async function PATCH(
 
     // Actualiza el elemento en la base de datos
     const elemento = await db.element.update({
-      where: { id: articuloId },
+      where: { id: id },
       data: valores,
     })
 
