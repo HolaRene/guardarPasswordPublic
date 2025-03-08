@@ -6,20 +6,28 @@ export async function PATCH(
   { params }: { params: { articuloId: string } }
 ) {
   try {
-    const { articuloId } = await params
-    const valores = await req.json()
+    const { articuloId } = params
+
+    // Verifica si el articuloId está presente
     if (!articuloId) {
-      return new NextResponse('Debe proporcionar un id de articulo', {
+      return new NextResponse('Debe proporcionar un id de artículo', {
         status: 400,
       })
     }
+
+    // Obtén los valores del cuerpo de la solicitud
+    const valores = await req.json()
+
+    // Actualiza el elemento en la base de datos
     const elemento = await db.element.update({
       where: { id: articuloId },
-      data: { ...valores },
+      data: valores,
     })
+
+    // Devuelve la respuesta con el elemento actualizado
     return NextResponse.json(elemento)
   } catch (error) {
-    console.log(error)
+    console.error('Error en PATCH /api/articulos/[articuloId]:', error)
     return new NextResponse('Ha ocurrido un error', { status: 500 })
   }
 }
