@@ -65,7 +65,7 @@ export const crearRamdonUser = (length = 8) => {
     'Claudia',
     'Colton',
   ]
-  const ramdonItems = (array: any) =>
+  const ramdonItems = (array: string[]) =>
     array[Math.floor(Math.random() * array.length)]
 
   let username = ''

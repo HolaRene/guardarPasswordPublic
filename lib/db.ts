@@ -1,10 +1,8 @@
 import { PrismaClient } from '@prisma/client'
-// Create a global PrismaClient instance
-declare global {
-  var prisma: PrismaClient | undefined
-}
 
-// Import and export the PrismaClient instance
-export const db = globalThis.prisma || new PrismaClient()
+// Evita crear múltiples instancias en desarrollo
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient }
 
-if (process.env.NODE_ENV === 'development') globalThis.prisma = db
+export const db = globalForPrisma.prisma ?? new PrismaClient()
+
+if (process.env.NODE_ENV === 'development') globalForPrisma.prisma = db
