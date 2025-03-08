@@ -13,7 +13,7 @@ const login = async () => {
       <div className='flex justify-center h-full'>
         <div className='flex flex-col items-center justify-center p-6 text-white'>
           <h1 className='text-blue-500 text-2xl text-center mb-5'>
-            Donjoe Contrasenia
+            Donjoe Contraseña.
           </h1>
           <h2 className='text-4xl font-medium text-black'>
             Bienvenido de nuevo
