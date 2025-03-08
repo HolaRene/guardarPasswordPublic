@@ -9,7 +9,7 @@ const login = async () => {
     redirect('/')
   }
   return (
-    <div className='grid md:grid-cols-2 h-full max-h-screen overflow-hidden'>
+    <div className='grid grid-cols-1 md:grid-cols-2 h-full max-h-screen overflow-hidden md:overflow-auto'>
       <div className='flex justify-center h-full'>
         <div className='flex flex-col items-center justify-center p-6 text-white'>
           <h1 className='text-blue-500 text-2xl text-center mb-5'>
@@ -26,7 +26,9 @@ const login = async () => {
           <TabsForm />
         </div>
       </div>
-      <ImageAuth />
+      <div className='hidden md:block'>
+        + <ImageAuth />+{' '}
+      </div>
     </div>
   )
 }

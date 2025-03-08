@@ -87,11 +87,11 @@ function FormAddElemento(props: FormAddElementProps) {
   }
 
   return (
-    <div className='max-h-screen overflow-y-auto p-4'>
+    <div className='max-h-screen overflow-y-auto p-4 md:p-6'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='grid grid-cols-1 md:grid-cols-2 gap-4 p-2'
+          className='grid grid-cols-1 md:grid-cols-2 gap-4 p-2 md:p-4'
         >
           <FormField
             control={form.control}
@@ -283,7 +283,7 @@ function FormAddElemento(props: FormAddElementProps) {
                 Premium
               </p>
             </div>
-            <Input disabled placeholder='TOTP' />
+            <Input disabled placeholder='TOTP' className='w-full md:w-auto' />
           </div>
           <FormField
             control={form.control}
@@ -298,8 +298,11 @@ function FormAddElemento(props: FormAddElementProps) {
               </FormItem>
             )}
           />
-          <div></div>
-          <Button type='submit'>Crear</Button>
+          <div className='md:col-span-2 flex justify-end mt-4'>
+            <Button type='submit' className='w-full md:w-auto'>
+              + Crear +{' '}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
