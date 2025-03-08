@@ -1,8 +1,8 @@
 import { getServerSession } from 'next-auth'
-import HaederMain from './(home)/components/HeaderMain/Headermain'
 import { redirect } from 'next/navigation'
+import HaederMain from './components/HeaderMain/Headermain'
+import TableData from './components/TableData/TableData'
 import { db } from '@/lib/db'
-import TableData from './(home)/components/TableData/TableData'
 
 export default async function Home() {
   const sesion = await getServerSession()

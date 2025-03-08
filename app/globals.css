@@ -7,6 +7,15 @@ html {
   height: 100%;
 }
 
+@media (max-width: 767px) {
+  .responsive-register {
+    position: relative;
+    font-size: 12px;
+    margin-top: 1rem;
+    padding: 0.1rem;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

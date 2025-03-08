@@ -62,7 +62,7 @@ const HaederMain = (props: HeaderMainProps) => {
             </DropdownMenuLabel>
           </DropdownMenuContent>
         </DropdownMenu>
-        <DialogContent className='sm:max-w-[825px]'>
+        <DialogContent className='sm:max-w-[800px]'>
           <DialogHeader>
             <DialogTitle>Nuevo registro</DialogTitle>
           </DialogHeader>
